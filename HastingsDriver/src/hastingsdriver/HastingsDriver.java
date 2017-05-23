@@ -14,9 +14,14 @@ public class HastingsDriver {
     private static Driver myDriver;
     private static int driverNumber = 0;
     private static RandomGen randomGen;
+    private static Map map;
+    
     
     public static void main(String[] args) {
+        map = new Map();
         randomGen = new RandomGen();
+        
+        
         myDriver = new Driver(randomGen.getLocation(driverNumber));
     }
       

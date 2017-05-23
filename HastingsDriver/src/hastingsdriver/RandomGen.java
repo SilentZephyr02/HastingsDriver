@@ -12,21 +12,27 @@ import java.util.Random;
  * @author youngj13
  */
 public class RandomGen {
+    Boolean test = true;
     Random generator;
-    int[] intLocation = new int[5];
+    int[] locationStart = new int[5];
     String psuedo;        
     
     public RandomGen(){
         generator = new Random();
         double random = generator.nextDouble();
+        
         psuedo = Double.toString(random).substring(2); //removes the 0. off the double
         
-        for(int i = 0; i < intLocation.length; i++){
-            intLocation[i] = Integer.parseInt(psuedo.substring(i, i+2));
+        if(test)System.out.println(psuedo);
+        
+        for(int i = 0; i < locationStart.length; i++){
+            locationStart[i] = Integer.parseInt(psuedo.substring(i, i+2));
+            if(test)System.out.println(getLocation(i));
         }
     }
     
-    public int getLocation(int i){
+    public int getLocation(int driverNumber){
+        int i = locationStart[driverNumber];
         if(i < 25){
             i = 1;
         }else if (i < 50){
