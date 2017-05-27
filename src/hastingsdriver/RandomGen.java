@@ -18,19 +18,12 @@ public class RandomGen {
     private int countdirection;
     private int[] myint;
 
-    public RandomGen() {
-        psuedoGen();
+    public RandomGen(int seed) {
+        psuedoGen(seed);
         for (int i = 0; i < locationStart.length; i++) {
             locationStart[i] = Integer.parseInt(psuedo.substring(i, i + 2));
         }
         setdirection();
-    }
-
-    private void psuedoGen() {
-        generator = new Random();
-        double random = generator.nextDouble();
-
-        psuedo = Double.toString(random).substring(2); //removes the 0. off the double
     }
 
     private void psuedoGen(int seed) {

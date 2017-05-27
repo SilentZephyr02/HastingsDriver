@@ -7,7 +7,7 @@ package hastingsdriver;
 
 /**
  *
- * @author sup61
+ * @author youngj13
  */
 public class HastingsDriver {
     private static Driver[] myDriver = new Driver[5];
@@ -16,9 +16,23 @@ public class HastingsDriver {
 
     
     public static void main(String[] args) {
+        public static void main(String[] args) {
+        Scanner reader = new Scanner(System.in);  // Reading from System.in
+        System.out.println("what is your nummber? ");
+        String n = reader.nextLine();
+  //      System.out.println(n);
+        if (n.matches("[0-9]+")) {
+            System.out.println("good");
+            int userInput = Integer.parseInt(n);
+            randomGen = new RandomGen(userInput);
+        }
+        else{
+            System.out.println("invalid input");
+            return;
+        }
+    }
         map = new Map();
-        randomGen = new RandomGen();
-        
+        randomGen = new RandomGen(userInput);
         for(int i = 0; i < myDriver.length ; i++){
             myDriver[i] = new Driver(i+1,randomGen.getLocation(i));
             printStarterLocation(myDriver[i].getNumber(),randomGen.getLocation(i));
