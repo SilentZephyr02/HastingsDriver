@@ -23,7 +23,7 @@ public class HastingsDriver {
             System.out.println("what is your nummber? ");
             String n = reader.nextLine();
             int userInput;
-            if (n.matches("[0-9]+")) {
+            if (n.matches("[0-9]{1,9}")) {
                 System.out.println("good");
                 userInput = Integer.parseInt(n);
                 randomGen = new RandomGen(userInput);
