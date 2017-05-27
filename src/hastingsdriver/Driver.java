@@ -14,33 +14,31 @@ public class Driver {
     private int location;
     private int akinaCount;
     
-    public Driver(int location){
-        this.location = location;
-    }
-    
-    public void nextDriver(){
-        driverNumber++;
+    public Driver(int number,int location){
+        this.driverNumber = number;
+        moveToLocation(location);
     }
     
     public int getNumber(){
         return driverNumber;
     }
     
-    public void akinaCount(){
-        akinaCount++;
+    public void moveToLocation(int location){
+        this.location = location;
+        if (location == 3) akinaCount++;
     }
     
-    /**
-    * @return the location
-    */
     public int getLocation() {
         return location;
     }
 
-    /**
-     * @param location the location to set
-     */
     public void setLocation(int location) {
         this.location = location;
     }
+
+    public int getAkinaCount() {
+        return akinaCount;
+    }
+
+
 }

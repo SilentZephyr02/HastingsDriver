@@ -15,32 +15,21 @@ import java.util.List;
 public class Location {
     private String locationName;
     private List<Street> connections = new ArrayList();
-    private int locationNumber;
     
-        public Location(String name){
+    public Location(String name){
         this.locationName = name;
-    }  
-    
-    public Location(String name, int number){
-        this.locationName = name;
-        this.locationNumber = number;
-    }    
+    }
     
     public void addStreet(Street s){
         connections.add(s);
     }
 
-    /**
-     * @return the locationName
-     */
+
     public String getLocationName() {
         return locationName;
     }
-    
-    /**
-     * @return the locationNumber
-     */
-    public int getLocationNumber() {
-        return locationNumber;
+
+    public List<Street> getConnections() {
+        return connections;
     }
 }

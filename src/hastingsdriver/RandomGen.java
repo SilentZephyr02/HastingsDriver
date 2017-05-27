@@ -4,51 +4,42 @@
 * and open the template in the editor.
  */
 package hastingsdriver;
- 
+
 import java.util.Random;
- 
+
 /**
  *
- * @author 115jason
+ * @author youngj13
  */
 public class RandomGen {
- 
-    private Boolean test = true;
     private Random generator;
     private int[] locationStart = new int[5];
     private String psuedo;
     private int countdirection;
     private int[] myint;
- 
+
     public RandomGen() {
         psuedoGen();
-        if (test) {
-            System.out.println(psuedo);
-        }
- 
         for (int i = 0; i < locationStart.length; i++) {
             locationStart[i] = Integer.parseInt(psuedo.substring(i, i + 2));
-            if (test) {
-                System.out.println(getLocation(i));
-            }
         }
         setdirection();
     }
- 
+
     private void psuedoGen() {
         generator = new Random();
         double random = generator.nextDouble();
- 
+
         psuedo = Double.toString(random).substring(2); //removes the 0. off the double
     }
- 
+
     private void psuedoGen(int seed) {
         generator = new Random(seed);
         double random = generator.nextDouble();
- 
+
         psuedo = Double.toString(random).substring(2); //removes the 0. off the double
     }
- 
+
     public int getLocation(int driverNumber) {
         int i = locationStart[driverNumber];
         if (i < 25) {
@@ -62,7 +53,7 @@ public class RandomGen {
         }
         return i;
     }
- 
+
     private void setdirection() {
         myint = new int[psuedo.length()];
         for (int i = 0; i < psuedo.length(); i++) {
@@ -79,10 +70,9 @@ public class RandomGen {
         }
         countdirection = 0;
     }
- 
+
     public int getdirection() {
-        
-        if (countdirection == 17) {
+        if (countdirection == 15) {
             psuedoGen(myint[0] + myint[1] + myint[2] + myint[3]);
             setdirection();
         }
@@ -90,7 +80,4 @@ public class RandomGen {
         return myint[countdirection - 1];
     }
 }
- 
- 
- 
  

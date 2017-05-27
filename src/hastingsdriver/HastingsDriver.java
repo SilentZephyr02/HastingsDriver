@@ -10,31 +10,50 @@ package hastingsdriver;
  * @author sup61
  */
 public class HastingsDriver {
-
-    private static Driver myDriver;
-    private static int driverNumber = 0;
+    private static Driver[] myDriver = new Driver[5];
     private static RandomGen randomGen;
     private static Map map;
-    
-   
-    
+
     
     public static void main(String[] args) {
         map = new Map();
         randomGen = new RandomGen();
         
-        myDriver = new Driver(randomGen.getLocation(driverNumber));
-        
-        
-        myDriver.getLocation();
-        
-        System.out.println(stringStarterLocation(driverNumber,myDriver.getLocation()));
-        
+        for(int i = 0; i < myDriver.length ; i++){
+            myDriver[i] = new Driver(i+1,randomGen.getLocation(i));
+            printStarterLocation(myDriver[i].getNumber(),randomGen.getLocation(i));
+            
+            int newDirection;
+            do{
+                newDirection = randomGen.getdirection();
+                System.out.println("Driver "+ (i+1) + " moving to " + map.getNextLocationName(myDriver[i].getLocation(),newDirection) 
+                        + " from " + map.getLocationNameFromInt(myDriver[i].getLocation())
+                        + " via " + map.getTravelledStreetNames(myDriver[i].getLocation(),newDirection));
+                
+                
+                myDriver[i].moveToLocation(map.getNextLocationInt(myDriver[i].getLocation(),newDirection));
+               // System.out.println(map.getLocationNameFromInt(myDriver[i].getLocation()));
+                
+                if(myDriver[i].getLocation()>5){
+                    
+                    System.out.println("Driver "+ (i+1) + " has gone to Outside City");
+                    //System.out.println("Driver "+ (i+1) + " has gone to " + map.getLocationNameFromInt(myDriver[i].getLocation()));
+                    
+                    System.out.println("Driver "+ (i+1) + " met with Jonh Jamieson " + myDriver[i].getAkinaCount() + " Times(s)");
+                    
+                    if(myDriver[i].getAkinaCount()==0) System.out.println("That passenger missed out!");
+                    else if(myDriver[i].getAkinaCount()>=3) System.out.println("This driver need alot of help!");
+                    
+                    System.out.println("-----");
+                    break;
+                }
+            }while(newDirection<=2);
+            
+            
+        }
     }
       
-    private static String stringStarterLocation(int driver,int location){
-        String msg = "Driver " + (driver + 1) + " Started at "  + map.getLocationNameFromInt(location);
-        if(location == 3) myDriver.akinaCount();
-        return msg;
+    private static void printStarterLocation(int driverNumber,int location){
+        System.out.println( "Driver " + (driverNumber) + " Started at "  + map.getLocationNameFromInt(location));
     } 
 }

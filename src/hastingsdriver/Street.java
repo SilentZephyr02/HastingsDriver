@@ -18,4 +18,12 @@ public class Street {
         this.start = start;
         this.end = end;
     }
+
+    public Location getEnd() {
+        return end;
+    }
+
+    public String getStreetName() {
+        return streetName;
+    }
 }
