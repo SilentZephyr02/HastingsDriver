@@ -36,4 +36,11 @@ public class Location {
     public String getLocationName() {
         return locationName;
     }
+    
+    /**
+     * @return the locationNumber
+     */
+    public int getLocationNumber() {
+        return locationNumber;
+    }
 }

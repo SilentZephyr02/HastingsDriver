@@ -48,30 +48,39 @@ public class Map {
         streetSet("Pakowhai Road",locations.get(7),locations.get(0));    //SM Mahora
         
         //Joining Nodes to Exit Nodes
-        streetSetEnd("Karamu Road",locations.get(4),locations.get(8));
-        streetSetEnd("Havelock Road",locations.get(5),locations.get(9));
-        streetSetEnd("Railway Road",locations.get(6),locations.get(10));
-        streetSetEnd("Omahu Road",locations.get(7),locations.get(11));
+        streetSetEnd("Karamu Road",locations.get(4),locations.get(9));
+        streetSetEnd("Havelock Road",locations.get(5),locations.get(10));
+        streetSetEnd("Railway Road",locations.get(6),locations.get(11));
+        streetSetEnd("Omahu Road",locations.get(7),locations.get(8));
     }
     
-    private void streetSet(String streetName,Location i, Location j){
-        Street s1 = new Street(streetName,i,j);
-        Street s2 = new Street(streetName,j,i);
+    private void streetSet(String streetName,Location location1, Location location2){
+        Street street1 = new Street(streetName,location1,location2);
+        Street street2 = new Street(streetName,location2,location1);
         
-        i.addStreet(s1);
-        j.addStreet(s2);
+        location1.addStreet(street1);
+        location2.addStreet(street2);
         
         if(test){
-            System.out.println(i.getLocationName() + " was joined with " + j.getLocationName() + " thur " + streetName );
-            System.out.println(j.getLocationName() + " was joined with " + i.getLocationName() + " thur " + streetName );
+            System.out.println(location1.getLocationName() + " was joined with " + location2.getLocationName() + " thur " + streetName );
+            System.out.println(location2.getLocationName() + " was joined with " + location1.getLocationName() + " thur " + streetName );
         }
     }
     
-    private void streetSetEnd(String streetName,Location i, Location j){
-        Street s1 = new Street(streetName,i,j);
+    private void streetSetEnd(String streetName,Location location1, Location location2){
+        Street street = new Street(streetName,location1,location2);
         
-        i.addStreet(s1);
+        location1.addStreet(street);
 
-        if(test) System.out.println(i.getLocationName() + " was joined with " + j.getLocationName() + " thur " + streetName );
+        if(test) System.out.println(location1.getLocationName() + " was joined with " + location2.getLocationName() + " thur " + streetName );
+    }
+    
+    public String getLocationNameFromInt(int locationInt){
+        for(Location l : locations){
+            if(l.getLocationNumber() == (locationInt)){
+                return l.getLocationName();
+            }
+        }
+        return null;
     }
 }

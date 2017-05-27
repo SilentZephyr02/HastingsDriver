@@ -26,7 +26,21 @@ public class Driver {
         return driverNumber;
     }
     
-    public void akinaCheck(){
+    public void akinaCount(){
         akinaCount++;
+    }
+    
+    /**
+    * @return the location
+    */
+    public int getLocation() {
+        return location;
+    }
+
+    /**
+     * @param location the location to set
+     */
+    public void setLocation(int location) {
+        this.location = location;
     }
 }
