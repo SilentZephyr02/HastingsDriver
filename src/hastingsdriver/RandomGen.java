@@ -15,15 +15,15 @@ public class RandomGen {
     private Random generator;
     private int[] locationStart = new int[5];
     private String psuedo;
-    private int countdirection;
-    private int[] myint;
+    private int countDirection;
+    private int[] myInt;
 
     public RandomGen(int seed) {
         psuedoGen(seed);
         for (int i = 0; i < locationStart.length; i++) {
             locationStart[i] = Integer.parseInt(psuedo.substring(i, i + 2));
         }
-        setdirection();
+        setDirection();
     }
 
     private void psuedoGen(int seed) {
@@ -34,43 +34,43 @@ public class RandomGen {
     }
 
     public int getLocation(int driverNumber) {
-        int i = locationStart[driverNumber];
-        if (i < 25) {
-            i = 1;
-        } else if (i < 50) {
-            i = 2;
-        } else if (i < 75) {
-            i = 3;
-        } else if (i < 100) {
-            i = 4;
+        int locationNumber = locationStart[driverNumber];
+        if (locationNumber < 25) {
+            locationNumber = 1;
+        } else if (locationNumber < 50) {
+            locationNumber = 2;
+        } else if (locationNumber < 75) {
+            locationNumber = 3;
+        } else if (locationNumber < 100) {
+            locationNumber = 4;
         }
-        return i;
+        return locationNumber;
     }
 
-    private void setdirection() {
-        myint = new int[psuedo.length()];
+    private void setDirection() {
+        myInt = new int[psuedo.length()];
         for (int i = 0; i < psuedo.length(); i++) {
-            myint[i] = Integer.parseInt(psuedo.substring(i, i + 1));
-            if (myint[i] < 4 && myint[i] >= 0) {
-                myint[i] = 1;
-            } else if (myint[i] < 8 && myint[i] > 3) {
-                myint[i] = 2;
-            } else if (myint[i] == 8) {
-                myint[i] = 3;
-            } else if (myint[i] == 9) {
-                myint[i] = 4;
+            myInt[i] = Integer.parseInt(psuedo.substring(i, i + 1));
+            if (myInt[i] <= 2 && myInt[i] >= 0) {
+                myInt[i] = 1;
+            } else if (myInt[i] <= 5 && myInt[i] >= 3) {
+                myInt[i] = 2;
+            } else if (myInt[i] == 6 || myInt[i] == 7) {
+                myInt[i] = 3;
+            } else if (myInt[i] == 8 || myInt[i] == 9) {
+                myInt[i] = 4;
             }
         }
-        countdirection = 0;
+        countDirection = 0;
     }
 
-    public int getdirection() {
-        if (countdirection == 15) {
-            psuedoGen(myint[0] + myint[1] + myint[2] + myint[3]);
-            setdirection();
+    public int getDirection() {
+        if (countDirection == 15) {
+            psuedoGen(myInt[0] + myInt[1] + myInt[2] + myInt[3] + myInt[4]);
+            setDirection();
         }
-        countdirection++;
-        return myint[countdirection - 1];
+        countDirection++;
+        return myInt[countDirection - 1];
     }
 }
  

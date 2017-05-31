@@ -20,16 +20,16 @@ public class HastingsDriver {
     public static void main(String[] args) {
         while (true) {
             Scanner reader = new Scanner(System.in);  // Reading from System.in
-            System.out.println("what is your nummber? ");
-            String n = reader.nextLine();
+            System.out.println("What is your nummber?");
+            String userString = reader.nextLine();
             int userInput;
-            if (n.matches("[0-9]{1,9}")) {
-                System.out.println("good");
-                userInput = Integer.parseInt(n);
+            if (userString.matches("[0-9]{1,9}")) {
+                userInput = Integer.parseInt(userString);
                 randomGen = new RandomGen(userInput);
                 driving();
             } else {
-                System.out.println("invalid input");
+                System.out.println("Invalid Input");
+                System.out.println("Exiting Application");
                 return;
             }
         }
@@ -43,31 +43,39 @@ public class HastingsDriver {
 
             int newDirection;
             do {
-                newDirection = randomGen.getdirection();
-                System.out.println("Driver " + (i + 1) + " moving to " + map.getNextLocationName(myDriver[i].getLocation(), newDirection)
-                        + " from " + map.getLocationNameFromInt(myDriver[i].getLocation())
-                        + " via " + map.getTravelledStreetNames(myDriver[i].getLocation(), newDirection));
-
-                myDriver[i].moveToLocation(map.getNextLocationInt(myDriver[i].getLocation(), newDirection));
-                // System.out.println(map.getLocationNameFromInt(myDriver[i].getLocation()));
-
-                if (myDriver[i].getLocation() > 5) {
-
-                    System.out.println("Driver " + (i + 1) + " has gone to Outside City");
-                    //System.out.println("Driver "+ (i+1) + " has gone to " + map.getLocationNameFromInt(myDriver[i].getLocation()));
-
-                    System.out.println("Driver " + (i + 1) + " met with Jonh Jamieson " + myDriver[i].getAkinaCount() + " Times(s)");
-
+                newDirection = randomGen.getDirection();              
+                if(newDirection >= 3){
+                    printTravellingPathToExit(i,newDirection);
+                    System.out.println("Driver " + (i + 1) + " met with John Jamieson " + myDriver[i].getAkinaCount() + " Times(s)");
+                    
                     if (myDriver[i].getAkinaCount() == 0) {
                         System.out.println("That passenger missed out!");
                     } else if (myDriver[i].getAkinaCount() >= 3) {
                         System.out.println("This driver need alot of help!");
                     }
-
+                    
                     System.out.println("-----");
                     break;
+                }else{
+                    printTravellingPath(i,newDirection);
+                    myDriver[i].moveToLocation(map.getNextLocationInt(myDriver[i].getLocation(), newDirection));
                 }
             } while (newDirection <= 2);
+        }
+    }
+    
+    private static void printTravellingPath(int driverNumber,int direction){
+        System.out.println("Driver " + (driverNumber + 1) + " moving to " + map.getNextLocationName(myDriver[driverNumber].getLocation(), direction)
+            + " from " + map.getLocationNameFromInt(myDriver[driverNumber].getLocation())
+            + " via " + map.getTravelledStreetNames(myDriver[driverNumber].getLocation(), direction));
+    }
+    
+    private static void printTravellingPathToExit(int driverNumber,int direction){
+        System.out.println("Driver " + (driverNumber + 1) + " moving to Outside City from " + map.getLocationNameFromInt(myDriver[driverNumber].getLocation())
+            + " via " + map.getTravelledStreetNames(myDriver[driverNumber].getLocation(), direction));
+        
+        if((map.getNextLocationInt(myDriver[driverNumber].getLocation(), direction)==9)||(map.getNextLocationInt(myDriver[driverNumber].getLocation(), direction)==10)){
+            System.out.println("Driver " + (driverNumber + 1) + " has gone to " + map.getNextLocationName(myDriver[driverNumber].getLocation(), direction));
         }
     }
 

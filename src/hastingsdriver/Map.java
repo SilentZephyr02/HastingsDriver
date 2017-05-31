@@ -14,8 +14,6 @@ import java.util.List;
  */
 public class Map {
     List<Location> locations = new ArrayList();
-    Boolean test = false;
-    
     
     public Map(){
         //City Locations
@@ -68,16 +66,12 @@ public class Map {
         Street street = new Street(streetName,locationStart,locationEnd);
         
         locationStart.addStreet(street);
-
-        if(test) System.out.println(locationStart.getLocationName() + " was joined with " + locationEnd.getLocationName() + " via " + streetName );
     }
     
     private void streetSetOneWayReverse(String streetName,Location locationStart, Location locationEnd){
         Street street = new Street(streetName,locationEnd,locationStart);
         
         locationEnd.addStreet(street);
-
-        if(test) System.out.println(locationStart.getLocationName() + " was joined with " + locationEnd.getLocationName() + " via " + streetName );
     }
     
     public String getLocationNameFromInt(int locationInt){
@@ -88,16 +82,16 @@ public class Map {
         String newLocation = null;
         switch (direction) {
             case 1:
-                newLocation = locations.get(currentLocation-1).getConnections().get(0).getEnd().getConnections().get(0).getEnd().getLocationName();
+                newLocation = locations.get(currentLocation-1).getClockwiseLocation().getClockwiseLocation().getLocationName();
                 break;
             case 2:
-                newLocation = locations.get(currentLocation-1).getConnections().get(1).getEnd().getConnections().get(1).getEnd().getLocationName();
+                newLocation = locations.get(currentLocation-1).getCounterClockwiseLocation().getCounterClockwiseLocation().getLocationName();
                 break;
             case 3:
-                newLocation = locations.get(currentLocation-1).getConnections().get(0).getEnd().getConnections().get(2).getEnd().getLocationName();
+                newLocation = locations.get(currentLocation-1).getClockwiseLocation().getEndLocation().getLocationName();
                 break;
             case 4:
-                newLocation = locations.get(currentLocation-1).getConnections().get(1).getEnd().getConnections().get(2).getEnd().getLocationName();
+                newLocation = locations.get(currentLocation-1).getCounterClockwiseLocation().getEndLocation().getLocationName();
                 break;
         }
         return newLocation;
@@ -108,20 +102,20 @@ public class Map {
         String newLocation = null;
         switch (direction) {
             case 1:
-                newLocation = locations.get(currentLocation-1).getConnections().get(0).getStreetName() + " and " +
-                        locations.get(currentLocation-1).getConnections().get(0).getEnd().getConnections().get(0).getStreetName();
+                newLocation = locations.get(currentLocation-1).getClockwiseStreetName() + " and " +
+                        locations.get(currentLocation-1).getClockwiseLocation().getClockwiseStreetName();
                 break;
             case 2:
-                newLocation = locations.get(currentLocation-1).getConnections().get(1).getStreetName() + " and " +
-                        locations.get(currentLocation-1).getConnections().get(1).getEnd().getConnections().get(1).getStreetName();
+                newLocation = locations.get(currentLocation-1).getCounterClockwiseStreetName() + " and " +
+                        locations.get(currentLocation-1).getCounterClockwiseLocation().getCounterClockwiseStreetName();
                 break;
             case 3:
-                newLocation = locations.get(currentLocation-1).getConnections().get(0).getStreetName() + " and " +
-                        locations.get(currentLocation-1).getConnections().get(0).getEnd().getConnections().get(2).getStreetName();
+                newLocation = locations.get(currentLocation-1).getClockwiseStreetName() + " and " +
+                        locations.get(currentLocation-1).getClockwiseLocation().getEndStreetName();
                 break;
             case 4:
-                newLocation = locations.get(currentLocation-1).getConnections().get(1).getStreetName() + " and " +
-                        locations.get(currentLocation-1).getConnections().get(1).getEnd().getConnections().get(2).getStreetName();
+                newLocation = locations.get(currentLocation-1).getCounterClockwiseStreetName() + " and " +
+                        locations.get(currentLocation-1).getCounterClockwiseLocation().getEndStreetName();
                 break;
         }
         return newLocation;
@@ -131,20 +125,18 @@ public class Map {
         int newLocationInt = -1;
         switch (direction) {
             case 1:
-                newLocationInt = locations.indexOf(locations.get(currentLocation-1).getConnections().get(0).getEnd().getConnections().get(0).getEnd());
+                newLocationInt = locations.indexOf(locations.get(currentLocation-1).getClockwiseLocation().getClockwiseLocation());
                 break;
             case 2:
-                newLocationInt = locations.indexOf(locations.get(currentLocation-1).getConnections().get(1).getEnd().getConnections().get(1).getEnd());
+                newLocationInt = locations.indexOf(locations.get(currentLocation-1).getCounterClockwiseLocation().getCounterClockwiseLocation());
                 break;
             case 3:
-                int g =0;
-                newLocationInt = locations.indexOf(locations.get(currentLocation-1).getConnections().get(0).getEnd().getConnections().get(2).getEnd());
+                newLocationInt = locations.indexOf(locations.get(currentLocation-1).getClockwiseLocation().getEndLocation());
                 break;
             case 4:
-                 int gw =0;
-                newLocationInt = locations.indexOf(locations.get(currentLocation-1).getConnections().get(1).getEnd().getConnections().get(2).getEnd());
+                newLocationInt = locations.indexOf(locations.get(currentLocation-1).getCounterClockwiseLocation().getEndLocation());
                 break;
         }
-        return newLocationInt+1;
+        return newLocationInt + 1;
     }
 }
