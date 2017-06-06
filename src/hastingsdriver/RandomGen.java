@@ -33,7 +33,7 @@ public class RandomGen {
         psuedo = Double.toString(random).substring(2); //removes the 0. off the double
     }
 
-    public int getLocation(int driverNumber) {
+    public int getStartLocation(int driverNumber) {
         int locationNumber = locationStart[driverNumber];
         if (locationNumber < 25) {
             locationNumber = 1;

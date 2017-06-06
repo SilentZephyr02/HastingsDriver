@@ -38,8 +38,8 @@ public class HastingsDriver {
     public static void driving() {
         map = new Map();
         for (int i = 0; i < myDriver.length; i++) {
-            myDriver[i] = new Driver(i + 1, randomGen.getLocation(i));
-            printStarterLocation(myDriver[i].getNumber(), randomGen.getLocation(i));
+            myDriver[i] = new Driver(i + 1, randomGen.getStartLocation(i));
+            printStarterLocation(myDriver[i].getNumber(), randomGen.getStartLocation(i));
 
             int newDirection;
             do {

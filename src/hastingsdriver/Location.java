@@ -24,13 +24,8 @@ public class Location {
         connections.add(s);
     }
 
-
     public String getLocationName() {
         return locationName;
-    }
-
-    public List<Street> getConnections() {
-        return connections;
     }
     
     public String getClockwiseStreetName(){
@@ -46,14 +41,14 @@ public class Location {
     }    
     
     public Location getClockwiseLocation(){
-        return this.getConnections().get(0).getEnd();
+        return this.connections.get(0).getEnd();
     }
     
     public Location getCounterClockwiseLocation(){
-        return this.getConnections().get(1).getEnd();
+        return this.connections.get(1).getEnd();
     }
     
     public Location getEndLocation(){
-        return this.getConnections().get(2).getEnd();
+        return this.connections.get(2).getEnd();
     }
 }
