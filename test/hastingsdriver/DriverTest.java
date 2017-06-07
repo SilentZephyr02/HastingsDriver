@@ -31,10 +31,10 @@ public class DriverTest {
     }
 
     /**
-     * Test of moveToLocation method, of class Driver.
+     * Test of moveToLocation method and the akinaCount/ getAkinaCount
      */
     @Test
-    public void testMoveToLocation() {
+    public void testMoveToLocationAndAkina() {
         int newLocation = 2;
         testDriver.moveToLocation(newLocation);
         int result = testDriver.getLocation();

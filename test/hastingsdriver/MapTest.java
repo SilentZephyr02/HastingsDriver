@@ -29,9 +29,6 @@ public class MapTest {
         testMap = new Map();
     }
 
-    /**
-     * Test of getLocationNameFromInt method, of class Map.
-     */
     @Test
     public void testGetLocationNameFromInt() {
         String result = testMap.getLocationNameFromInt(1);
@@ -44,9 +41,6 @@ public class MapTest {
         assertEquals("Stortford Lodge",result);
     }
 
-    /**
-     * Test of getNextLocationName method, of class Map.
-     */
     @Test
     public void testGetNextLocationName() {
         String result = testMap.getNextLocationName(1,1);
@@ -59,9 +53,6 @@ public class MapTest {
         assertEquals("Flaxmere",result);
     }
 
-    /**
-     * Test of getTravelledStreetNames method, of class Map.
-     */
     @Test
     public void testGetTravelledStreetNames() {
         String result = testMap.getTravelledStreetNames(1,1);
@@ -74,9 +65,6 @@ public class MapTest {
         assertEquals("Pakowhai Road and Omahu Road",result);
     }
 
-    /**
-     * Test of getNextLocationInt method, of class Map.
-     */
     @Test
     public void testGetNextLocationInt() {
         int result = testMap.getNextLocationInt(1,1);
@@ -88,5 +76,4 @@ public class MapTest {
         result = testMap.getNextLocationInt(1,4);
         assertEquals(9,result);
     }
-    
 }

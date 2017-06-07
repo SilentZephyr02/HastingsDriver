@@ -53,7 +53,6 @@ public class Map {
         streetSetOneWayReverse("Oliaphant Road",locations.get(6),locations.get(3));
         streetSetOneWayReverse("Maraekakoho Road",locations.get(3),locations.get(7));
         streetSetOneWayReverse("Pakowhai Road",locations.get(7),locations.get(0));
-
         
         //Joining Nodes to Exit Nodes
         streetSetOneWay("Karamu Road",locations.get(4),locations.get(9));
@@ -96,7 +95,6 @@ public class Map {
         }
         return newLocation;
     }
-
     
     public String getTravelledStreetNames(int currentLocation,int direction){
         String newLocation = null;

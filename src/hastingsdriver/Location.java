@@ -11,6 +11,8 @@ import java.util.List;
 /**
  *
  * @author sup61
+ * Uses how the Locations and Street are joined together to be able to use the
+ * Counter clockwise and End node locations
  */
 public class Location {
     private String locationName;
@@ -28,6 +30,7 @@ public class Location {
         return locationName;
     }
     
+    //Return names for locations 
     public String getClockwiseStreetName(){
         return this.connections.get(0).getStreetName();
     }
@@ -40,6 +43,7 @@ public class Location {
         return this.connections.get(2).getStreetName();
     }    
     
+    //Return Location
     public Location getClockwiseLocation(){
         return this.connections.get(0).getEnd();
     }

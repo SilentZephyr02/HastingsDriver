@@ -5,17 +5,15 @@
  */
 package hastingsdriver;
 
-import java.util.List;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 /**
  *
  * @author sup61
+ * 
  */
 public class LocationTest {
     
@@ -23,30 +21,35 @@ public class LocationTest {
     }
     
     
-    static Location testLoaction1;
-    static Location testLoaction2;
+    static Location testLocation1;
+    static Location testLocation2;
 
-    
     static Street street1a;
-    static Street street1b;
 
     @BeforeClass
     public static void setUpClass() {
-        testLoaction1 = new Location("Test Location 1");
-        testLoaction2 = new Location("Test Location 2");
+        testLocation1 = new Location("Test Location 1");
+        testLocation2 = new Location("Test Location 2");
         
-        street1a = new Street("Test Street",testLoaction1,testLoaction2);
-        street1b = new Street("Test Street",testLoaction2,testLoaction1);
+        String street1aName = "testStreet";
+        
+        street1a = mock(Street.class);
+        when(street1a.getEnd()).thenReturn(testLocation2);
+        when(street1a.getStreetName()).thenReturn(street1aName);
     }
 
-    /**
-     * Test of addStreet method, of class Location.
-     */
     @Test
-    public void testAddStreet() {
-        testLoaction1.addStreet(street1a);
-        testLoaction2.addStreet(street1b);
+    public void testAddStreetAndClockwiseLocation() {
+        testLocation1.addStreet(street1a);
         
-        assertEquals("Test Location 2",testLoaction1.getClockwiseLocation().getLocationName());
-    } 
+        assertEquals("Test Location 2",testLocation1.getClockwiseLocation().getLocationName());
+    }
+    
+    @Test
+    public void testGetStreetName() {
+        String result = testLocation1.getClockwiseStreetName();
+        
+        assertEquals("testStreet",result);
+    }
+    
 }
